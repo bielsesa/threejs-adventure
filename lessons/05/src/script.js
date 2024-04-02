@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import gsap from 'gsap';
 
 // Canvas
 const canvas = document.querySelector('canvas.webgl');
@@ -45,6 +46,10 @@ renderer.setSize(sizes.width, sizes.height);
 // let time = Date.now();
 const clock = new THREE.Clock();
 
+// gsap has its own 'tick' and does its own requestAnimationFrame
+gsap.to(cube2.position, { duration: 1, delay: 1, x: 1 });
+gsap.to(cube2.position, { duration: 1, delay: 2, x: -1 });
+
 // Animations
 const gameLoop = () => {
 
@@ -66,7 +71,7 @@ const gameLoop = () => {
     cube.position.x = Math.sin(elapsedTime);
     cube.position.y = Math.cos(elapsedTime);
     sphere.position.z = Math.sin(elapsedTime);
-    cube2.lookAt(cube.position);
+    // cube2.lookAt(cube.position);
     
     // Render
     renderer.render(scene, camera);
